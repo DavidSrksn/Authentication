@@ -8,9 +8,23 @@
 
 import UIKit
 
-class AuthViewController: UIViewController, UITextFieldDelegate {
+protocol AuthViewProtocol: class{
+    var progressBar: ProgressView {get set}
+    
+    func setAlertWarning(message: String)
+    
+    func setShimmerWarning(textfieldType: PersonData)
+    
+    func presentViewController(viewController: UIViewController)
+}
 
-    let progressBar = ProgressView(frame: .zero)
+final class AuthViewController: UIViewController, UITextFieldDelegate, AuthViewProtocol {
+
+    var presenter: AuthPresenter!
+    
+    var progressBar = ProgressView(frame: .zero)
+    
+    let dataSource = DataSource.shared
     
     let stackView = UIStackView()
     
@@ -24,6 +38,9 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupMVP()
+        setupKeyboardLayout()
+        dataSource.createNewPerson()
         loginTextField.delegate = self
         passwordTextField.delegate = self
         view.backgroundColor = .white
@@ -39,13 +56,38 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         setupLogo()
     }
     
+    func setupMVP(){
+        let presenter = AuthPresenter(viewController: self)
+        self.presenter = presenter
+    }
+    
+    func presentViewController(viewController: UIViewController) {
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func setAlertWarning(message: String) {
+        showWarning(message: message)
+    }
+    
+    func setShimmerWarning(textfieldType: PersonData) {
+        switch textfieldType {
+        case .login:
+            loginTextField.warning()
+        case .password:
+            passwordTextField.warning()
+        }
+    }
+    
     func setupTextField(textField: UITextField, placeHolder: String){
-        textField.placeholder = placeHolder
+        textField.attributedPlaceholder = NSAttributedString(string: placeHolder,
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.darkGray.cgColor
+        
+        textField.textColor = .black
         
         stackView.addArrangedSubview(textField)
     }
@@ -80,12 +122,13 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         
         logoLabel.bottomAnchor.constraint(equalTo: progressBar.topAnchor, constant: -5).isActive = true
         logoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        logoLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         logoLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         logoLabel.textAlignment = .center
         logoLabel.font = UIFont(name: "HelveticaNeue", size: 30)
-        logoLabel.text = "\"LOGO\""
+        logoLabel.text = "Authentication"
+        logoLabel.textColor = .black
     }
 
     func setupLoginButton(){
@@ -110,7 +153,21 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func loginButtonAction(){
-        checkData(login: loginTextField.text!, password: passwordTextField.text!)
+        let login = loginTextField.text!
+        let password = passwordTextField.text!
+        
+        if login == "", password == "" {
+            presenter.showAlertWarning(message: "Filled fields are incorrect")
+        }else if !dataSource.checkData(data: login, key: .login) && !dataSource.checkData(data: password, key: .password){
+            presenter.showShimmerWarning(textfieldType: .login)
+            presenter.showShimmerWarning(textfieldType: .password)
+        }else if !dataSource.checkData(data: password, key: .password){
+            presenter.showShimmerWarning(textfieldType: .password)
+        }else if !dataSource.checkData(data: login, key: .login){
+            presenter.showShimmerWarning(textfieldType: .login)
+        }else{
+            progressBar.updateProgress(occasion: .increase,completion:  nil)
+        }
     }
     
     func setupProgressBar(){
@@ -124,21 +181,8 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         progressBar.heightAnchor.constraint(equalToConstant: 10).isActive = true
     }
     
-    func checkData(login: String, password: String){
-        if  login != "", password != ""{
-            progressBar.updateProgress {
-                loginButton.alpha = 1
-            }
-        }else if login == "", password == ""{
-            showWarning(message: "Fill the textfields")
-        }else if login == ""{
-            
-        }else if password == ""{
-            showWarning(message: "Incorrect password")
-        }
-    }
-    
     func setupSignupButton(){
+        signupButton.addTarget(.none, action: #selector(signupButtonAction), for: .touchUpInside)
         view.addSubview(signupButton)
         
         signupButton.translatesAutoresizingMaskIntoConstraints = false
@@ -153,26 +197,80 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         signupButton.titleLabel?.textAlignment = .center
     }
     
+    @objc func signupButtonAction(){
+        presenter.presentViewController(occasion: .shouldSignUp)
+    }
+    
 }
 
 
 
 extension AuthViewController {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        var key: String?
+
+    private func keyForTextfield(textField: UITextField) -> PersonData{
         if textField === loginTextField{
-            key = "login"
+            return .login
         }else if textField === passwordTextField{
-            key = "password"
-        }
-        
-        if let key = key,textField.isCorrect(key: key){
-            textField.resignFirstResponder()
-            return true
-        }else{
-            return false
+            return .password
+        }else{return .login}
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        switch textField.status{
+        case .correct:
+            return
+        case .incorrect, .empty:
+            progressBar.updateProgress(occasion: .increase) {
+                self.loginButton.alpha = 1
+            }
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        let key = keyForTextfield(textField: textField)
+        
+        textField.changeStatus(key: key)
+        
+        switch textField.status{
+        case .correct:
+            return
+        case .incorrect, .empty:
+            progressBar.updateProgress(occasion: .reduce) {
+                self.loginButton.alpha = 0.5
+            }
+        }
+    }
+    
 }
 
+
+// MARK: Keyboard layput
+
+extension AuthViewController{
+    @objc func keyboardWillShow(notification: NSNotification){
+        guard let userInfo = notification.userInfo else{return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else{return}
+        let keyboardFrame = keyboardSize.cgRectValue.height
+        
+        if view.frame.origin.y == 0{
+            view.frame.origin.y -= keyboardFrame / 2
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification){
+        if view.frame.origin.y != 0{
+            view.frame.origin.y = 0
+        }
+    }
+    
+    public func setupKeyboardLayout(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+}

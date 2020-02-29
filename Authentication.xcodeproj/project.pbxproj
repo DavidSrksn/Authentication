@@ -9,16 +9,21 @@
 /* Begin PBXBuildFile section */
 		9A6348372405A67E00841293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6348362405A67E00841293 /* AppDelegate.swift */; };
 		9A6348392405A67E00841293 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6348382405A67E00841293 /* SceneDelegate.swift */; };
-		9A63483B2405A67E00841293 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63483A2405A67E00841293 /* AuthController.swift */; };
+		9A63483B2405A67E00841293 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63483A2405A67E00841293 /* AuthViewController.swift */; };
 		9A63483E2405A67E00841293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A63483C2405A67E00841293 /* Main.storyboard */; };
 		9A6348402405A68100841293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A63483F2405A68100841293 /* Assets.xcassets */; };
 		9A6348432405A68100841293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6348412405A68100841293 /* LaunchScreen.storyboard */; };
 		9A63484E2405A68200841293 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63484D2405A68200841293 /* AuthenticationTests.swift */; };
 		9A6348592405A68200841293 /* AuthenticationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6348582405A68200841293 /* AuthenticationUITests.swift */; };
-		9A63486B2405B89C00841293 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63486A2405B89C00841293 /* AuthModel.swift */; };
+		9A63486B2405B89C00841293 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63486A2405B89C00841293 /* PersonModel.swift */; };
 		9A63486F2406867F00841293 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63486E2406867F00841293 /* ProgressView.swift */; };
 		9A6348722406895A00841293 /* Warnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6348712406895A00841293 /* Warnings.swift */; };
 		9A6348742406BD3A00841293 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6348732406BD3A00841293 /* TextField.swift */; };
+		9A6348772406D0B100841293 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6348762406D0B100841293 /* SignupViewController.swift */; };
+		9A63487924078CDD00841293 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63487824078CDD00841293 /* AuthPresenter.swift */; };
+		9A63487C240790E400841293 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63487B240790E400841293 /* DataSource.swift */; };
+		9A63487E2408193400841293 /* AuthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63487D2408193400841293 /* AuthStatus.swift */; };
+		9A63488124082ECF00841293 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63488024082ECF00841293 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +47,7 @@
 		9A6348332405A67E00841293 /* Authentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6348362405A67E00841293 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A6348382405A67E00841293 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9A63483A2405A67E00841293 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		9A63483A2405A67E00841293 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		9A63483D2405A67E00841293 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A63483F2405A68100841293 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A6348422405A68100841293 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,10 +58,15 @@
 		9A6348542405A68200841293 /* AuthenticationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6348582405A68200841293 /* AuthenticationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUITests.swift; sourceTree = "<group>"; };
 		9A63485A2405A68200841293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A63486A2405B89C00841293 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		9A63486A2405B89C00841293 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		9A63486E2406867F00841293 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		9A6348712406895A00841293 /* Warnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warnings.swift; sourceTree = "<group>"; };
 		9A6348732406BD3A00841293 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		9A6348762406D0B100841293 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		9A63487824078CDD00841293 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		9A63487B240790E400841293 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		9A63487D2408193400841293 /* AuthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStatus.swift; sourceTree = "<group>"; };
+		9A63488024082ECF00841293 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				9A6348702406893C00841293 /* Extensions */,
+				9A63487A240790AA00841293 /* DataBase */,
 				9A6348672405A74E00841293 /* Storyboards */,
+				9A6348752406D09C00841293 /* Sign up */,
 				9A6348352405A67E00841293 /* Authentication */,
+				9A63487F24082EA200841293 /* MainView */,
 				9A6348662405A69200841293 /* Additionals */,
 				9A63484C2405A68200841293 /* AuthenticationTests */,
 				9A6348572405A68200841293 /* AuthenticationUITests */,
@@ -110,9 +123,9 @@
 		9A6348352405A67E00841293 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				9A63483A2405A67E00841293 /* AuthController.swift */,
-				9A63486E2406867F00841293 /* ProgressView.swift */,
-				9A63486A2405B89C00841293 /* AuthModel.swift */,
+				9A63483A2405A67E00841293 /* AuthViewController.swift */,
+				9A63487D2408193400841293 /* AuthStatus.swift */,
+				9A63487824078CDD00841293 /* AuthPresenter.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -160,8 +173,34 @@
 			children = (
 				9A6348712406895A00841293 /* Warnings.swift */,
 				9A6348732406BD3A00841293 /* TextField.swift */,
+				9A63486E2406867F00841293 /* ProgressView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9A6348752406D09C00841293 /* Sign up */ = {
+			isa = PBXGroup;
+			children = (
+				9A6348762406D0B100841293 /* SignupViewController.swift */,
+			);
+			path = "Sign up";
+			sourceTree = "<group>";
+		};
+		9A63487A240790AA00841293 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				9A63487B240790E400841293 /* DataSource.swift */,
+				9A63486A2405B89C00841293 /* PersonModel.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		9A63487F24082EA200841293 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				9A63488024082ECF00841293 /* MainView.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,12 +334,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A63483B2405A67E00841293 /* AuthController.swift in Sources */,
-				9A63486B2405B89C00841293 /* AuthModel.swift in Sources */,
+				9A63483B2405A67E00841293 /* AuthViewController.swift in Sources */,
+				9A63486B2405B89C00841293 /* PersonModel.swift in Sources */,
 				9A6348722406895A00841293 /* Warnings.swift in Sources */,
 				9A6348742406BD3A00841293 /* TextField.swift in Sources */,
+				9A63487924078CDD00841293 /* AuthPresenter.swift in Sources */,
 				9A63486F2406867F00841293 /* ProgressView.swift in Sources */,
+				9A63488124082ECF00841293 /* MainView.swift in Sources */,
+				9A63487E2408193400841293 /* AuthStatus.swift in Sources */,
+				9A6348772406D0B100841293 /* SignupViewController.swift in Sources */,
 				9A6348372405A67E00841293 /* AppDelegate.swift in Sources */,
+				9A63487C240790E400841293 /* DataSource.swift in Sources */,
 				9A6348392405A67E00841293 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

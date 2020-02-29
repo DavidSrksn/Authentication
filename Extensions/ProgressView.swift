@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum ProgressType {
+    case increase
+    case reduce
+}
+
 final class ProgressView: UIProgressView{
     
     let progressNumber: Float = 2
@@ -21,11 +26,17 @@ final class ProgressView: UIProgressView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func updateProgress(completion: ()-> Void){
-        let progress: Float = self.progress + Float(1) / progressNumber
+    public func updateProgress(occasion: ProgressType, completion: (()-> Void)?){
+        let progress: Float
+        switch occasion {
+        case .increase:
+            progress = self.progress + Float(1) / progressNumber
+        case .reduce:
+            progress = self.progress - Float(1) / progressNumber
+        }
         self.setProgress(progress, animated: true)
         
-        checkProgress(completion: completion)
+        checkProgress(occasion: occasion, completion: completion)
     }
     
     private func setupProgressView(){
@@ -38,9 +49,14 @@ final class ProgressView: UIProgressView{
         layer.cornerRadius = 5
     }
     
-    private func checkProgress(completion: ()->Void){
-        if progress == 1{
-            completion()
+    private func checkProgress(occasion: ProgressType, completion: (()->Void)?){
+        switch occasion{
+        case .increase:
+            if progress == 1{
+                completion?()
+            }
+        case .reduce:
+            completion?()
         }
     }
     

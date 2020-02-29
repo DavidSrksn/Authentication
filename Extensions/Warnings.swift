@@ -18,10 +18,16 @@ extension UIViewController{
 
 extension UITextField{
     
-    public func incorrectDataWarning(){
-        UIView.animate(withDuration: 3) {
+    public func warning(){
+        let originalColor = self.backgroundColor
+        
+        UIView.animate(withDuration: 1) {
             self.backgroundColor = .systemRed
         }
+        UIView.animate(withDuration: 1) {
+            self.backgroundColor = originalColor
+        }
+
     }
 }
 

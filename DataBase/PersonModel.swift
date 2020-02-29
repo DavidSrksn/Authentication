@@ -6,7 +6,7 @@
 //  Copyright © 2020 DavidS & that's all. All rights reserved.
 //
 
-public struct Login{
+public struct Person{
     var login: String?
     var password: String?
     
