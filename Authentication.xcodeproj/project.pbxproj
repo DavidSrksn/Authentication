@@ -23,7 +23,10 @@
 		9A63487924078CDD00841293 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63487824078CDD00841293 /* AuthPresenter.swift */; };
 		9A63487C240790E400841293 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63487B240790E400841293 /* DataSource.swift */; };
 		9A63487E2408193400841293 /* AuthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63487D2408193400841293 /* AuthStatus.swift */; };
-		9A63488124082ECF00841293 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63488024082ECF00841293 /* MainView.swift */; };
+		9A63488124082ECF00841293 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63488024082ECF00841293 /* MainViewController.swift */; };
+		9A63C95C240A839700E577AB /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63C95B240A839700E577AB /* SignupPresenter.swift */; };
+		9A63C962240C2F4000E577AB /* UnpermittedSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63C961240C2F4000E577AB /* UnpermittedSymbols.swift */; };
+		9A63C964240C365E00E577AB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63C963240C365E00E577AB /* Text.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +69,10 @@
 		9A63487824078CDD00841293 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
 		9A63487B240790E400841293 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		9A63487D2408193400841293 /* AuthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStatus.swift; sourceTree = "<group>"; };
-		9A63488024082ECF00841293 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9A63488024082ECF00841293 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9A63C95B240A839700E577AB /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
+		9A63C961240C2F4000E577AB /* UnpermittedSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpermittedSymbols.swift; sourceTree = "<group>"; };
+		9A63C963240C365E00E577AB /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				9A63483A2405A67E00841293 /* AuthViewController.swift */,
-				9A63487D2408193400841293 /* AuthStatus.swift */,
 				9A63487824078CDD00841293 /* AuthPresenter.swift */,
+				9A63487D2408193400841293 /* AuthStatus.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -173,6 +179,7 @@
 			children = (
 				9A6348712406895A00841293 /* Warnings.swift */,
 				9A6348732406BD3A00841293 /* TextField.swift */,
+				9A63C963240C365E00E577AB /* Text.swift */,
 				9A63486E2406867F00841293 /* ProgressView.swift */,
 			);
 			path = Extensions;
@@ -182,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				9A6348762406D0B100841293 /* SignupViewController.swift */,
+				9A63C95B240A839700E577AB /* SignupPresenter.swift */,
+				9A63C961240C2F4000E577AB /* UnpermittedSymbols.swift */,
 			);
 			path = "Sign up";
 			sourceTree = "<group>";
@@ -198,7 +207,7 @@
 		9A63487F24082EA200841293 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				9A63488024082ECF00841293 /* MainView.swift */,
+				9A63488024082ECF00841293 /* MainViewController.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -335,16 +344,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A63483B2405A67E00841293 /* AuthViewController.swift in Sources */,
+				9A63C964240C365E00E577AB /* Text.swift in Sources */,
 				9A63486B2405B89C00841293 /* PersonModel.swift in Sources */,
 				9A6348722406895A00841293 /* Warnings.swift in Sources */,
 				9A6348742406BD3A00841293 /* TextField.swift in Sources */,
 				9A63487924078CDD00841293 /* AuthPresenter.swift in Sources */,
 				9A63486F2406867F00841293 /* ProgressView.swift in Sources */,
-				9A63488124082ECF00841293 /* MainView.swift in Sources */,
+				9A63488124082ECF00841293 /* MainViewController.swift in Sources */,
 				9A63487E2408193400841293 /* AuthStatus.swift in Sources */,
+				9A63C95C240A839700E577AB /* SignupPresenter.swift in Sources */,
 				9A6348772406D0B100841293 /* SignupViewController.swift in Sources */,
 				9A6348372405A67E00841293 /* AppDelegate.swift in Sources */,
 				9A63487C240790E400841293 /* DataSource.swift in Sources */,
+				9A63C962240C2F4000E577AB /* UnpermittedSymbols.swift in Sources */,
 				9A6348392405A67E00841293 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

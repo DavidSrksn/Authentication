@@ -42,14 +42,4 @@ extension UITextField{
             objc_setAssociatedObject(self, &AssociatedKeys.status, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-    
-    public func changeStatus(key: PersonData){
-        if text! == "" {
-            status = .empty
-        }else if self.isCorrect(key: key){
-            status = .correct
-        }else if !self.isCorrect(key: key){
-            status = .incorrect
-        }
-    }
 }

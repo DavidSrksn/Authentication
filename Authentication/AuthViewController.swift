@@ -16,13 +16,14 @@ protocol AuthViewProtocol: class{
     func setShimmerWarning(textfieldType: PersonData)
     
     func presentViewController(viewController: UIViewController)
+    
 }
 
 final class AuthViewController: UIViewController, UITextFieldDelegate, AuthViewProtocol {
 
     var presenter: AuthPresenter!
     
-    var progressBar = ProgressView(frame: .zero)
+    var progressBar = ProgressView(frame: .zero, progressNumber: 2)
     
     let dataSource = DataSource.shared
     
@@ -40,7 +41,6 @@ final class AuthViewController: UIViewController, UITextFieldDelegate, AuthViewP
         super.viewDidLoad()
         setupMVP()
         setupKeyboardLayout()
-        dataSource.createNewPerson()
         loginTextField.delegate = self
         passwordTextField.delegate = self
         view.backgroundColor = .white
@@ -62,7 +62,7 @@ final class AuthViewController: UIViewController, UITextFieldDelegate, AuthViewP
     }
     
     func presentViewController(viewController: UIViewController) {
-        self.present(viewController, animated: true, completion: nil)
+        self.present(viewController, animated: true)
     }
     
     func setAlertWarning(message: String) {
@@ -78,9 +78,18 @@ final class AuthViewController: UIViewController, UITextFieldDelegate, AuthViewP
         }
     }
     
+    func changeStatus(textField: UITextField, key: PersonData) {
+        if textField.text! == "" {
+            textField.status = .empty
+        }else if textField.isCorrect(key: key){
+            textField.status = .correct
+        }else if !textField.isCorrect(key: key){
+            textField.status = .incorrect
+        }
+    }
+    
     func setupTextField(textField: UITextField, placeHolder: String){
-        textField.attributedPlaceholder = NSAttributedString(string: placeHolder,
-                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        textField.attributedPlaceholder = NSAttributedString(string: placeHolder,attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         
         textField.layer.cornerRadius = 10
@@ -166,7 +175,7 @@ final class AuthViewController: UIViewController, UITextFieldDelegate, AuthViewP
         }else if !dataSource.checkData(data: login, key: .login){
             presenter.showShimmerWarning(textfieldType: .login)
         }else{
-            progressBar.updateProgress(occasion: .increase,completion:  nil)
+            presenter.presentViewController(occasion: .loggedIn)
         }
     }
     
@@ -221,7 +230,9 @@ extension AuthViewController {
             return
         case .incorrect, .empty:
             progressBar.updateProgress(occasion: .increase) {
-                self.loginButton.alpha = 1
+                UIView.animate(withDuration: 1) {
+                    self.loginButton.alpha = 1
+                }
             }
         }
     }
@@ -234,14 +245,16 @@ extension AuthViewController {
     func textFieldDidEndEditing(_ textField: UITextField){
         let key = keyForTextfield(textField: textField)
         
-        textField.changeStatus(key: key)
+        changeStatus(textField: textField, key: key)
         
         switch textField.status{
         case .correct:
             return
         case .incorrect, .empty:
             progressBar.updateProgress(occasion: .reduce) {
-                self.loginButton.alpha = 0.5
+                UIView.animate(withDuration: 1) {
+                    self.loginButton.alpha = 0.5
+                }
             }
         }
     }
@@ -258,7 +271,7 @@ extension AuthViewController{
         let keyboardFrame = keyboardSize.cgRectValue.height
         
         if view.frame.origin.y == 0{
-            view.frame.origin.y -= keyboardFrame / 2
+            view.frame.origin.y -= keyboardFrame / 2.5
         }
     }
     

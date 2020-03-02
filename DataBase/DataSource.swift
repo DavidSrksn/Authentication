@@ -24,9 +24,9 @@ final class DataSource{
         return UserDefaults.standard.string(forKey: key.rawValue)
     }
     
-    func createNewPerson(){
-        UserDefaults.standard.set("L", forKey: "login")
-        UserDefaults.standard.set("P", forKey: "password")
+    func createNewPerson(login: String, password: String){
+        UserDefaults.standard.set(login, forKey: "login")
+        UserDefaults.standard.set(password, forKey: "password")
     }
 }
     

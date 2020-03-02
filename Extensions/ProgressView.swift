@@ -15,9 +15,10 @@ enum ProgressType {
 
 final class ProgressView: UIProgressView{
     
-    let progressNumber: Float = 2
+    var progressNumber: Float
     
-    override init(frame: CGRect) {
+    required init(frame: CGRect, progressNumber: Float) {
+        self.progressNumber = progressNumber
         super.init(frame: frame)
         setupProgressView()
     }

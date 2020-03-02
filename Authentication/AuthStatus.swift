@@ -19,7 +19,7 @@ extension AuthStatus: RawRepresentable{
     
     public init?(rawValue: RawValue) {
         switch rawValue {
-        case SignupViewController(): self = .loggedIn
+        case MainViewController(): self = .loggedIn
         case SignupViewController(): self = .shouldSignUp
         case AuthViewController(): self = .signedUp
         default: return nil
@@ -28,7 +28,7 @@ extension AuthStatus: RawRepresentable{
     
     public var rawValue: RawValue {
         switch self {
-        case .loggedIn: return SignupViewController()
+        case .loggedIn: return MainViewController()
         case .shouldSignUp: return SignupViewController()
         case .signedUp: return AuthViewController()
         }
