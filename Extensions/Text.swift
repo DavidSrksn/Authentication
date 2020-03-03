@@ -17,7 +17,7 @@ extension String{
             }
         })
         
-        if flag == 0 || self != ""{
+        if flag == 0 || self == ""{
             return true
         }else{
             return false

@@ -142,11 +142,11 @@ SignupViewControllerProtocol{
         let password = passwordTextField.text!
         let repeatPassword = repeatPasswordTextField.text!
 
-        if login == "", password == "", repeatPassword == "" {
+        if login == "" && password == "" && repeatPassword == "" {
             presenter.showAlertWarning(message: "Filled fields are incorrect")
-        }else if !login.isAllowed(){
+        }else if !login.isAllowed() || login == ""{
             presenter.showShimmerWarning(textfieldType: .login)
-        }else if !password.isAllowed(){
+        }else if !password.isAllowed() || password == ""{
             presenter.showShimmerWarning(textfieldType: .password)
         }else if !passwordsMatch(){
             presenter.showShimmerWarning(textfieldType: .password)
@@ -282,7 +282,7 @@ extension SignupViewController{
         let keyboardFrame = keyboardSize.cgRectValue.height
         
         if view.frame.origin.y == 0{
-            view.frame.origin.y -= keyboardFrame / 2
+            view.frame.origin.y -= keyboardFrame / 2.3
             scrollView.contentSize.height = view.frame.height * 1.5
         }
     }

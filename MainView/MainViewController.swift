@@ -29,7 +29,7 @@ class MainViewController: UIViewController{
         
         finishLabel.textAlignment = .center
         finishLabel.font = UIFont(name: "HelveticaNeue", size: 50)
-        finishLabel.text = "Finish?"
+        finishLabel.text = "Logged in"
         finishLabel.textColor = .purple
     }
 }
