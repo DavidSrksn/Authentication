@@ -283,7 +283,7 @@ extension SignupViewController{
         
         if view.frame.origin.y == 0{
             view.frame.origin.y -= keyboardFrame / 2.3
-            scrollView.contentSize.height = view.frame.height * 1.5
+            scrollView.contentSize.height = view.frame.height + keyboardFrame / 1.5
         }
     }
     
