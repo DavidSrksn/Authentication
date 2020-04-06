@@ -27,6 +27,10 @@
 		9A63C95C240A839700E577AB /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63C95B240A839700E577AB /* SignupPresenter.swift */; };
 		9A63C962240C2F4000E577AB /* UnpermittedSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63C961240C2F4000E577AB /* UnpermittedSymbols.swift */; };
 		9A63C964240C365E00E577AB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63C963240C365E00E577AB /* Text.swift */; };
+		9A706208243B7DBE00C2A13C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A706207243B7DBE00C2A13C /* NavigationController.swift */; };
+		9A70620A243B821900C2A13C /* EditPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A706209243B821900C2A13C /* EditPersonViewController.swift */; };
+		9A70620D243B82C100C2A13C /* PersonViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70620C243B82C100C2A13C /* PersonViewViewController.swift */; };
+		9A70620F243B88B900C2A13C /* NavigationBarButtonsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70620E243B88B900C2A13C /* NavigationBarButtonsConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		9A63C95B240A839700E577AB /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		9A63C961240C2F4000E577AB /* UnpermittedSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpermittedSymbols.swift; sourceTree = "<group>"; };
 		9A63C963240C365E00E577AB /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		9A706207243B7DBE00C2A13C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		9A706209243B821900C2A13C /* EditPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonViewController.swift; sourceTree = "<group>"; };
+		9A70620C243B82C100C2A13C /* PersonViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewViewController.swift; sourceTree = "<group>"; };
+		9A70620E243B88B900C2A13C /* NavigationBarButtonsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarButtonsConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +116,10 @@
 				9A6348672405A74E00841293 /* Storyboards */,
 				9A6348752406D09C00841293 /* Sign up */,
 				9A6348352405A67E00841293 /* Authentication */,
+				9A706206243B7DA800C2A13C /* NavigationController */,
 				9A63487F24082EA200841293 /* MainView */,
+				9A70620B243B82A800C2A13C /* PersonView */,
+				9A706205243B7B3500C2A13C /* Edit */,
 				9A6348662405A69200841293 /* Additionals */,
 				9A63484C2405A68200841293 /* AuthenticationTests */,
 				9A6348572405A68200841293 /* AuthenticationUITests */,
@@ -210,6 +221,31 @@
 				9A63488024082ECF00841293 /* MainViewController.swift */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		9A706205243B7B3500C2A13C /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				9A706209243B821900C2A13C /* EditPersonViewController.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		9A706206243B7DA800C2A13C /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				9A706207243B7DBE00C2A13C /* NavigationController.swift */,
+				9A70620E243B88B900C2A13C /* NavigationBarButtonsConfigurator.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		9A70620B243B82A800C2A13C /* PersonView */ = {
+			isa = PBXGroup;
+			children = (
+				9A70620C243B82C100C2A13C /* PersonViewViewController.swift */,
+			);
+			path = PersonView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,13 +383,17 @@
 				9A63C964240C365E00E577AB /* Text.swift in Sources */,
 				9A63486B2405B89C00841293 /* PersonModel.swift in Sources */,
 				9A6348722406895A00841293 /* Warnings.swift in Sources */,
+				9A70620F243B88B900C2A13C /* NavigationBarButtonsConfigurator.swift in Sources */,
 				9A6348742406BD3A00841293 /* TextField.swift in Sources */,
 				9A63487924078CDD00841293 /* AuthPresenter.swift in Sources */,
 				9A63486F2406867F00841293 /* ProgressView.swift in Sources */,
 				9A63488124082ECF00841293 /* MainViewController.swift in Sources */,
 				9A63487E2408193400841293 /* AuthStatus.swift in Sources */,
+				9A706208243B7DBE00C2A13C /* NavigationController.swift in Sources */,
 				9A63C95C240A839700E577AB /* SignupPresenter.swift in Sources */,
 				9A6348772406D0B100841293 /* SignupViewController.swift in Sources */,
+				9A70620D243B82C100C2A13C /* PersonViewViewController.swift in Sources */,
+				9A70620A243B821900C2A13C /* EditPersonViewController.swift in Sources */,
 				9A6348372405A67E00841293 /* AppDelegate.swift in Sources */,
 				9A63487C240790E400841293 /* DataSource.swift in Sources */,
 				9A63C962240C2F4000E577AB /* UnpermittedSymbols.swift in Sources */,
@@ -537,7 +577,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Test.Authentication;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Authentication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -555,7 +595,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Test.Authentication;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Authentication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

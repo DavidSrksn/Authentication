@@ -175,7 +175,13 @@ final class AuthViewController: UIViewController, UITextFieldDelegate, AuthViewP
         }else if !dataSource.checkData(data: login, key: .login){
             presenter.showShimmerWarning(textfieldType: .login)
         }else{
-            presenter.presentViewController(occasion: .loggedIn)
+            Person.shared.login = login
+            Person.shared.password = password
+            
+            let viewController = AuthStatus.loggedIn.rawValue
+            let navigationController = UINavigationController(rootViewController: viewController)
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true, completion: nil)
         }
     }
     

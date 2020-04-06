@@ -7,11 +7,11 @@
 //
 
 public struct Person{
+    static var shared = Person()
+    
     var login: String?
     var password: String?
     
-    init(login: String, password: String) {
-        self.login = login
-        self.password = password
-    }
+    var fullName: String?
+    var age: Int?
 }

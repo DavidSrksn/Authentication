@@ -88,6 +88,9 @@ SignupViewControllerProtocol{
         let login = loginTextField.text!
         let password = passwordTextField.text!
         
+        Person.shared.login = login
+        Person.shared.password = password
+        
         DataSource.shared.createNewPerson(login: login, password: password)
     }
     
@@ -152,7 +155,10 @@ SignupViewControllerProtocol{
             presenter.showShimmerWarning(textfieldType: .password)
         }else{
             createNewPerson()
-            presenter.presentViewController(occasion: .loggedIn)
+            let viewController = AuthStatus.loggedIn.rawValue
+            let navigationController = UINavigationController(rootViewController: viewController)
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true, completion: nil)
         }
     }
     
